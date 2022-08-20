@@ -1,0 +1,61 @@
+.serch__box--area {
+  form {
+    position: relative;
+    @include max-media-width(991) {
+      position: absolute;
+      bottom: -65px;
+      left: 50%;
+      transform: translateX(-50%);
+      -webkit-transform: translateX(-50%);
+      -moz-transform: translateX(-50%);
+      -ms-transform: translateX(-50%);
+      -o-transform: translateX(-50%);
+      opacity: 0;
+      visibility: hidden;
+      @include hover-transition();
+      z-index: 11;
+    }
+    svg{
+      &:hover path{
+        fill: #f84f4f;
+
+      }
+    }
+  }
+  .serach__overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 0;
+    background-color: #55555577;
+    z-index: 10;
+    @include hover-transition();
+  }
+  &.search__active {
+    form {
+      bottom: -45px;
+      opacity: 1;
+      visibility: visible;
+
+    }
+    .serach__overlay{
+      height: 100vh;
+    }
+  }
+
+  input {
+    background: #f7f7f7;
+    border-radius: 50px;
+    width: 300px;
+    height: 40px;
+    border: none !important;
+    padding: 0 16px;
+  }
+  button {
+    position: absolute;
+    top: 6px;
+    right: 8px;
+    background: transparent;
+  }
+}

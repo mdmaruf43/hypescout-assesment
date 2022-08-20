@@ -1,0 +1,130 @@
+
+.layout__grid {
+	display: grid;
+	gap: 40px;
+	grid-template-columns: 1fr 3fr 1fr;
+	padding: 0;
+	padding-top: 105px;
+	@include media-break-width(320, 991) {
+		grid-template-columns: 1fr;
+		padding: 0;
+		padding-top: 50px;
+	}
+	.left__section {
+		position: fixed;
+		@include media-break-width(320, 991) {
+			display: none;
+		}
+	}
+	.each__profile {
+		padding-top: 8px;
+		cursor: pointer;
+		.name {
+			font-weight: 500;
+			font-size: 16px;
+			text-transform: capitalize;
+		}
+	}
+	.middle__section {
+		padding-bottom: 25px;
+		height: 100vh;
+		overflow: hidden;
+		@include customScrollbar();
+		.each__post--content {
+			&:not(:first-child) {
+				margin-top: 30px;
+			}
+			box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+			background-color: #fff;
+			border-radius: 8px;
+			.header {
+				padding: 15px 15px 0 15px;
+				.profile__grid {
+					display: grid;
+					gap: 10px;
+					grid-template-columns: 35px 1fr;
+				}
+				button {
+					background-color: transparent;
+				}
+			}
+			.description {
+				padding: 15px 15px 0 15px;
+				color: #333;
+				font-size: 15px;
+				a {
+					color: #4267B2;
+				}
+			}
+			.like__and--coments {
+				padding: 15px;
+			}
+			.image__section {
+				padding-top: 15px;
+				display: grid;
+				cursor: pointer;
+				gap: 10px;
+				grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+			}
+			.like__share {
+				border-top: 1px solid #ddd;
+				border-bottom: 1px solid #ddd;
+				padding: 10px 15px;
+				button {
+					background-color: transparent;
+				}
+			}
+			.user__comments {
+				padding: 15px 15px 0 15px;
+				.each__comment {
+					background-color: #f0f2f5;
+					padding: 10px;
+					border-radius: 15px;
+					margin-left: 8px;
+					h6 {
+						font-size: 15px;
+						font-weight: 500;
+					}
+					p {
+						font-size: 14px;
+						font-weight: 300;
+					}
+				}
+			}
+			.do__comment {
+				padding: 15px;
+				input {
+					margin: 0 15px 0 5px;
+					width: 100%;
+					border-radius: 25px !important;
+					background-color: #f0f2f5;
+				}
+			}
+		} 
+	}
+	.right__section {
+		height: 100vh;
+		overflow-y: scroll;
+		overflow-x: hidden;
+		position: fixed;
+		@include media-break-width(320, 991) {
+			display: none;
+		}
+		.online__user--list {
+			h6 {
+				font-size: 18px;
+				font-weight: 500;
+				color: #333;
+				padding-bottom: 15px;
+			}
+			.each__profile {
+				padding-top: 13px;
+				p.name {
+					color: #777;
+					font-weight: 300;
+				}
+			}
+		}
+	}
+}
+
