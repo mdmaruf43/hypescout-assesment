@@ -210,6 +210,13 @@
   resolved "https://registry.yarnpkg.com/@types/prop-types/-/prop-types-15.7.5.tgz#5f19d2b85a98e9558036f6a3cacc8819420f05cf"
   integrity sha512-JCB8C6SnDoQf0cNycqd/35A7MjcnK+ZTqE7judS6o7utxUCg6imJg3QK2qzHKszlTjcj2cn+NwMB2i96ubpj7w==
 
+"@types/react-bootstrap-range-slider@^1.2.1":
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/@types/react-bootstrap-range-slider/-/react-bootstrap-range-slider-1.2.1.tgz#79c9f18c205ae57043e7685be86f57d43c965250"
+  integrity sha512-zpBMNJYEbSqaL+9uvth3b6Ahwo2+Sl/Xu/NzA81ez7pFPecvLihZvo7oe48wolRloVPU1y0BNvSHt7+qKxzx7Q==
+  dependencies:
+    "@types/react" "*"
+
 "@types/react-dom@18.0.6":
   version "18.0.6"
   resolved "https://registry.yarnpkg.com/@types/react-dom/-/react-dom-18.0.6.tgz#36652900024842b74607a17786b6662dd1e103a1"
@@ -1540,7 +1547,7 @@ prop-types-extra@^1.1.0:
     react-is "^16.3.2"
     warning "^4.0.0"
 
-prop-types@^15.6.2, prop-types@^15.8.1:
+prop-types@^15.6.2, prop-types@^15.7.2, prop-types@^15.8.1:
   version "15.8.1"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.8.1.tgz#67d87bf1a694f48435cf332c24af10214a3140b5"
   integrity sha512-oj87CgZICdulUohogVAR7AjlC0327U4el4L6eAvOqCeudMDVU0NThNaV+b9Df4dXgSP1gXMTnPdhfe/2qDH5cg==
@@ -1558,6 +1565,14 @@ queue-microtask@^1.2.2:
   version "1.2.3"
   resolved "https://registry.yarnpkg.com/queue-microtask/-/queue-microtask-1.2.3.tgz#4929228bbc724dfac43e0efb058caf7b6cfb6243"
   integrity sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==
+
+react-bootstrap-range-slider@^3.0.8:
+  version "3.0.8"
+  resolved "https://registry.yarnpkg.com/react-bootstrap-range-slider/-/react-bootstrap-range-slider-3.0.8.tgz#5efc36314dc02195914b3dbdaed00da41af83682"
+  integrity sha512-FpDd1J1BW23jNN3fXmpy5nNDJ3PwMZ2/0dNse9RORwQ/z2rmpMQp/g6iNRpW6SjQkLKyGeNHyctK6dP+3zUXQA==
+  dependencies:
+    classnames "^2.3.1"
+    prop-types "^15.7.2"
 
 react-bootstrap@^2.5.0:
   version "2.5.0"

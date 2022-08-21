@@ -1,6 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import type { AppProps } from 'next/app';
 import "../styles/sass/style.scss";
+import 'react-bootstrap-range-slider/dist/react-bootstrap-range-slider.css';
 import { useEffect, useState } from 'react';
 import ThemeToggleContext from '../context/ThemeToggleContext';
 import ThemeDataType from '../dto/ThemeDataType';

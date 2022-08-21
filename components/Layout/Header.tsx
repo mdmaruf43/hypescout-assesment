@@ -7,7 +7,6 @@ import Navbar from "react-bootstrap/Navbar";
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Popover from 'react-bootstrap/Popover';
-import { sassTrue } from "sass";
 import ThemeToggleContext from "../../context/ThemeToggleContext";
 import ThemeContextType from "../../dto/ThemeContextType";
 
@@ -16,7 +15,6 @@ const Header: React.FC = () => {
     const handleClose                   = () => setShow(false);
     const handleShow                    = () => setShow(true);
     const { theme, toggleTheme }        = React.useContext(ThemeToggleContext) as ThemeContextType;
-    console.log("theme", theme);
 
     const themeTogglePopover = (
         <Popover id="popover-basic">
@@ -74,9 +72,9 @@ const Header: React.FC = () => {
                                             <img src="/assets/images/icon/lightMode.svg" alt="icon" />
                                             : 
                                             theme?.value === "dark" ?
-                                                <img src="/assets/images/icon/dark.svg" alt="logo" />
+                                                <img src="/assets/images/icon/dark2.svg" alt="logo" />
                                                 :
-                                                <img src="/assets/images/icon/lightMode.svg" alt="icon" />
+                                                <img src="/assets/images/icon/system.svg" alt="icon" />
                                     }
                                 </Button>
                             </OverlayTrigger>

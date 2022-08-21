@@ -7,6 +7,11 @@
     background: #564FB1;
     border-radius: 4px;
     transition: 0.5s all;
+    &.reset {
+        background: #050405;
+        color: #fff;
+        margin-right: 10px;
+    }
     &:hover {
         opacity: 0.8;
     }
