@@ -5,6 +5,19 @@
     @include media-break-width(320, 767) {
         padding: 40px 0 20px 0;
     }
+    &.dark {
+        background-color: $light-dark-bg;
+        .footer__menu {
+            h6 {
+                color: $white;
+            }
+        }
+        .bottom__text {
+            span {
+                color: $dark-text-color !important;
+            }
+        }
+    }
     .footer__logo--sec {
         p {
             padding: 20px 0;

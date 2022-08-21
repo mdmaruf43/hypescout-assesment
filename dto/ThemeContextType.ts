@@ -1,4 +1,6 @@
+import ThemeDataType from "./ThemeDataType";
+
 export default interface ThemeContextType {
-    theme:          string;
+    theme:          ThemeDataType;
     toggleTheme:    (value: string) => void;
 }

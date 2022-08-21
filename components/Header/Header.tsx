@@ -1,36 +1,41 @@
 /* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { Container, Button} from "react-bootstrap";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Popover from 'react-bootstrap/Popover';
+import { sassTrue } from "sass";
+import ThemeToggleContext from "../../context/ThemeToggleContext";
+import ThemeContextType from "../../dto/ThemeContextType";
 
 const Header: React.FC = () => {
-    const [show, setShow]             = useState(false);
-    const handleClose                 = () => setShow(false);
-    const handleShow                  = () => setShow(true);
+    const [show, setShow]               = useState(false);
+    const handleClose                   = () => setShow(false);
+    const handleShow                    = () => setShow(true);
+    const { theme, toggleTheme }        = React.useContext(ThemeToggleContext) as ThemeContextType;
+    console.log("theme", theme);
 
     const themeTogglePopover = (
         <Popover id="popover-basic">
             <Popover.Body>
                 <ul className="theme__toggle--dropdown">
                     <li>
-                        <div className="d-flex">
+                        <div className="d-flex" onClick={() => toggleTheme("light")}>
                             <p><img src="/assets/images/icon/light2.svg" alt="icon" /></p>
                             <p className="text">Light</p>
                         </div>
                     </li>
                     <li>
-                        <div className="d-flex">
+                        <div className="d-flex" onClick={() => {toggleTheme("dark")}}>
                             <p><img src="/assets/images/icon/dark.svg" alt="icon" /></p>
                             <p className="text">Dark</p>
                         </div>
                     </li>
                     <li>
-                        <div className="d-flex">
+                        <div className="d-flex" onClick={() => toggleTheme("system")}>
                             <p><img src="/assets/images/icon/system.svg" alt="icon" /></p>
                             <p className="text">System</p>
                         </div>
@@ -41,11 +46,19 @@ const Header: React.FC = () => {
     );
 
     return (
-        <Navbar className="header__wraper" expand="lg" fixed="top">
+        <Navbar className={`header__wraper ${theme?.value}`} expand="lg" fixed="top">
             <Container>
                 <Link  href="/" passHref>
                     <Navbar.Brand>
-                        <img src="/assets/images/logo.png" alt="logo" />
+                        {
+                            theme?.value === "light" ? 
+                                <img src="/assets/images/logo.png" alt="logo" />
+                                : 
+                                theme?.value === "dark" ?
+                                    <img src="/assets/images/logo-light.png" alt="logo" />
+                                    :
+                                    <img src="/assets/images/logo.png" alt="logo" />
+                        }
                     </Navbar.Brand>
                 </Link>
                 <div className="mobile__menu--icon d-lg-none">
@@ -56,7 +69,15 @@ const Header: React.FC = () => {
                         <li>
                             <OverlayTrigger trigger="click" rootClose placement="bottom" overlay={themeTogglePopover}>
                                 <Button>
-                                    <img src="/assets/images/icon/lightMode.svg" alt="icon" />
+                                    {
+                                        theme?.value === "light" ? 
+                                            <img src="/assets/images/icon/lightMode.svg" alt="icon" />
+                                            : 
+                                            theme?.value === "dark" ?
+                                                <img src="/assets/images/icon/dark.svg" alt="logo" />
+                                                :
+                                                <img src="/assets/images/icon/lightMode.svg" alt="icon" />
+                                    }
                                 </Button>
                             </OverlayTrigger>
                         </li>
@@ -109,12 +130,25 @@ const Header: React.FC = () => {
                     </Nav>
                     <Nav className="right__sec d-flex align-items-center">
                         <Nav.Link>
-                            <img src="/assets/images/icon/notification.svg" alt="icon" />
+                            <img className="nofication" src="/assets/images/icon/notification.svg" alt="icon" />
                         </Nav.Link>
                         <Nav.Link>
-                            <OverlayTrigger trigger="click" rootClose placement="bottom" overlay={themeTogglePopover}>
+                            <OverlayTrigger 
+                                trigger="click" 
+                                rootClose 
+                                placement="bottom" 
+                                overlay={themeTogglePopover}
+                            >
                                 <Button>
-                                    <img src="/assets/images/icon/lightMode.svg" alt="icon" />
+                                    {
+                                        theme?.value === "light" ? 
+                                            <img src="/assets/images/icon/lightMode.svg" alt="icon" />
+                                            : 
+                                            theme?.value === "dark" ?
+                                                <img src="/assets/images/icon/dark2.svg" alt="logo" />
+                                                :
+                                                <img src="/assets/images/icon/system.svg" alt="icon" />
+                                    }
                                 </Button>
                             </OverlayTrigger>
                         </Nav.Link>

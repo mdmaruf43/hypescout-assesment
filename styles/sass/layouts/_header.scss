@@ -2,6 +2,20 @@
 .header__wraper {
 	background-color: $slight-light-bg;
 	box-shadow: 0 2px 2px rgba(214, 174, 174, 0.07);
+	&.dark {
+		background-color: $light-dark-bg;
+		.middle__menu {
+			a {
+				color: $dark-text-color;
+			}
+		}
+		.profile__text {
+			color: $dark-text-color !important;
+		}
+		img.nofication {
+			filter: invert(49%) sepia(18%) saturate(401%) hue-rotate(166deg) brightness(85%) contrast(89%);
+		}
+	}
 	.mobile__menu--icon {
 		ul {
 			li:not(:last-child) { 
@@ -35,7 +49,7 @@
 			font-weight: 400;
 			font-size: 14px;
 			line-height: 17px;
-			color: #202124;
+			color: $light-text-color;
 			margin-right: 15px;
 		}
 	}
@@ -120,4 +134,4 @@
 			}
 		}
 	}
-  }
+}

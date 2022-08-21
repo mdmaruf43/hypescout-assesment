@@ -4,15 +4,27 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Link from 'next/link';
+import ThemeToggleContext from '../../context/ThemeToggleContext';
+import ThemeContextType from '../../dto/ThemeContextType';
 
-const Footer = () => {
+const Footer: React.FC = () => {
+    const { theme } = React.useContext(ThemeToggleContext) as ThemeContextType;
+
     return (
-        <div className="footer__wraper">
+        <div className={`footer__wraper ${theme?.value}`}>
             <Container>
                 <Row>
                     <Col md={3} xs={12}>
                         <div className="footer__logo--sec text-center text-lg-start">
-                            <img src="/assets/images/logo.png" alt="logo" />
+                            {
+                                theme?.value === "light" ? 
+                                    <img src="/assets/images/logo.png" alt="logo" />
+                                    : 
+                                    theme?.value === "dark" ?
+                                        <img src="/assets/images/logo-light.png" alt="logo" />
+                                        :
+                                        <img src="/assets/images/logo.png" alt="logo" />
+                            }
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fermentum sed ultricies volutpat rhoncus faucibus sit.</p>
                             <div className="d-flex justify-content-center justify-content-lg-start">
                                 <ul className="social__link list-unstyled d-flex">

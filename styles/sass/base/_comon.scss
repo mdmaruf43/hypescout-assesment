@@ -13,6 +13,11 @@ body {
     font-family: $body-font-family;
     font-size: $font-size-base;
 }
+.dark {
+  background-color: #000;
+  position: relative;
+  height: 100%;
+}
 
 h1,
 h2,
