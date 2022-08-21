@@ -1,12 +1,13 @@
-.btn__default {
-    border-radius: 50px;
-    font-weight: 500;
-    font-size: 13px;
-    line-height: 28px;
-    color: #111111;
-    padding: 6px 24px;
-    @include media('sm') {
-        padding: 6px 8px;
-        font-size: 10px;
+.default__btn {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    color: #FFFFFF;
+    padding: 10px 10px;
+    background: #564FB1;
+    border-radius: 4px;
+    transition: 0.5s all;
+    &:hover {
+        opacity: 0.8;
     }
-}
+} 

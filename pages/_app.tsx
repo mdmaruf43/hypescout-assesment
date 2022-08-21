@@ -24,6 +24,16 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
 	const getThemeInStorage = () => {
 		localStorage.getItem('theme') // returns 'light' in this case
 	}
+
+	useEffect(() => {
+		theme?.value === "light" ? 
+			document.body.style.background = "#fff"
+			:
+			theme?.value === "dark" ?
+				document.body.style.background = "#000"
+				: 
+				document.body.style.background = "#fff"
+	}, [theme])
 	
 
   	return (

@@ -1,7 +1,8 @@
 
 import Head from 'next/head';
-import Footer from '../components/Footer/Footer';
-import Header from '../components/Header/Header';
+import Footer from '../components/Layout/Footer';
+import Header from '../components/Layout/Header';
+import Home from '../components/Home/Home';
 
 const HomePage: React.FC = () => {
 	return (
@@ -12,6 +13,7 @@ const HomePage: React.FC = () => {
 				<link rel="icon" href="/assets/images/icon/fav.png" />
 			</Head>
 			<Header />
+			<Home />
 			<Footer />
 		</div>
 	)
