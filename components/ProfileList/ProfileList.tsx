@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import ProfileDataType from '../../dto/ProfileDataType';
+import ReactPaginate from 'react-paginate';
 
 interface PropsDataType {
     profileData:    ProfileDataType[];
@@ -8,11 +9,32 @@ interface PropsDataType {
 }
 
 const ProfileList: React.FC<PropsDataType> = ({ profileData, userSearch }) => {
+    const [currentItems, setCurrentItems] = useState<ProfileDataType[]>([]);
+    const [pageCount, setPageCount] = useState(0);
+    const [itemOffset, setItemOffset] = useState(0);
+    const itemsPerPage = 6;
+  
+    useEffect(() => {
+        const endOffset = itemOffset + itemsPerPage;
+        console.log(`Loading items from ${itemOffset} to ${endOffset}`);
+        setCurrentItems(profileData.slice(itemOffset, endOffset));
+        setPageCount(Math.ceil(profileData.length / itemsPerPage));
+    }, [itemOffset, itemsPerPage, profileData]);
+  
+    const handlePageClick = (event: { selected: number; }) => {
+        const newOffset = (event.selected * itemsPerPage) % profileData.length;
+        console.log(
+            `User requested page number ${event.selected}, which is offset ${newOffset}`
+        );
+        setItemOffset(newOffset);
+    };
+
     return (
-        <div className="profile__grid">
+        <div>
+            <div className="profile__grid">
             {
-                profileData?.length > 0 ? 
-                    profileData?.map((user, index) => (
+                currentItems?.length > 0 ? 
+                    currentItems?.map((user, index) => (
                         user?.name?.toLocaleLowerCase().includes(userSearch.toLowerCase()) && (
                             <div key={index} className="each">
                                 <div className="img__wraper">
@@ -48,6 +70,20 @@ const ProfileList: React.FC<PropsDataType> = ({ profileData, userSearch }) => {
                     : null
             }
             
+            </div>
+            <div className="d-flex justify-content-center">
+                <ReactPaginate
+                    breakLabel="..."
+                    nextLabel="Next 🡢"
+                    onPageChange={handlePageClick}
+                    pageRangeDisplayed={5}
+                    pageCount={pageCount}
+                    previousLabel="🡠 Previous"
+                    containerClassName="pagination"
+                    pageClassName="page__count"
+                    activeLinkClassName="active"
+                />
+            </div>
         </div>
     )
 }
