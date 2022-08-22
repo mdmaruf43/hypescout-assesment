@@ -6,16 +6,30 @@ import ThemeToggleContext from '../../context/ThemeToggleContext';
 import ThemeContextType from '../../dto/ThemeContextType';
 
 interface PropsDataType {
-    dataLength:     number;
-    userSearch:     string;
-    setUserSearch:  Dispatch<SetStateAction<string>>;
+    dataLength:                 number;
+    userSearch:                 string;
+    handleSearch:               () => void;
+    handleReset:                () => void;
+    setUserSearch:              Dispatch<SetStateAction<string>>;
+    setInfluencerIndustry:      Dispatch<SetStateAction<string>>;
+    setInfluencerCountry:       Dispatch<SetStateAction<string>>;
+    setInfluencerSocialMedia:   Dispatch<SetStateAction<string>>;
 }
 
-const Filter: React.FC<PropsDataType> = ({ dataLength, setUserSearch, userSearch }) => {
+const Filter: React.FC<PropsDataType> = ({ 
+    dataLength, 
+    setUserSearch, 
+    userSearch, 
+    setInfluencerIndustry, 
+    setInfluencerCountry, 
+    handleSearch, 
+    handleReset,
+    setInfluencerSocialMedia 
+}) => {
     const [checked, setChecked]                     = useState(false);
     const [femaleCheck, setFemaleCheck]             = useState(false);
     const [sliderValue, setSliderValue ]            = useState<number>(50);
-    const { updateTheme }                    = React.useContext(ThemeToggleContext) as ThemeContextType; 
+    const { updateTheme }                           = React.useContext(ThemeToggleContext) as ThemeContextType; 
 
     const handleChangeHorizontal = (value: number) => {
         setSliderValue(value);
@@ -38,38 +52,38 @@ const Filter: React.FC<PropsDataType> = ({ dataLength, setUserSearch, userSearch
                         <Form>
                             <Form.Group className="mb-3">
                                 <Form.Label>Influencer’s Industry</Form.Label>
-                                <Form.Select aria-label="Default select example">
+                                <Form.Select aria-label="Default select example" onChange={(e) => setInfluencerIndustry(e.target.value)}>
                                     <option>Select Options</option>
-                                    <option value="1">Industry</option>
-                                    <option value="2">Industry</option>
-                                    <option value="3">Industry</option>
+                                    <option value="Fashion">Fashion</option>
+                                    <option value="Food">Food</option>
+                                    <option value="Education">Education</option>
                                 </Form.Select>
                             </Form.Group>
                             <Form.Group className="mb-3">
-                                <Form.Label>Influencer’s Industry</Form.Label>
-                                <Form.Select aria-label="Default select example">
-                                    <option>Influencer’s Country</option>
-                                    <option value="1">Industry</option>
-                                    <option value="2">Industry</option>
-                                    <option value="3">Industry</option>
+                                <Form.Label>Influencer’s Country</Form.Label>
+                                <Form.Select aria-label="Default select example" onChange={(e) => setInfluencerCountry(e.target.value)}>
+                                    <option>Select Options</option>
+                                    <option value="Bangladesh">Bangladesh</option>
+                                    <option value="UK">UK</option>
+                                    <option value="USA">USA</option>
                                 </Form.Select>
                             </Form.Group>
                             <Form.Group className="mb-3">
                                 <Form.Label>Audience’s Country</Form.Label>
                                 <Form.Select aria-label="Default select example">
                                     <option>Select Options</option>
-                                    <option value="1">Industry</option>
-                                    <option value="2">Industry</option>
-                                    <option value="3">Industry</option>
+                                    <option value="1">Bangla</option>
+                                    <option value="2">UK</option>
+                                    <option value="3">USA</option>
                                 </Form.Select>
                             </Form.Group>
                             <Form.Group className="mb-3">
                                 <Form.Label>Influencer’s Social Media Platform</Form.Label>
-                                <Form.Select aria-label="Default select example">
+                                <Form.Select aria-label="Default select example" onChange={(e) => setInfluencerSocialMedia(e.target.value)}>
                                     <option>Select Options</option>
-                                    <option value="1">Industry</option>
-                                    <option value="2">Industry</option>
-                                    <option value="3">Industry</option>
+                                    <option value="FaceBook">FaceBook</option>
+                                    <option value="YouTube">YouTube</option>
+                                    <option value="Twitter">Twitter</option>
                                 </Form.Select>
                             </Form.Group>
                             <Form.Group className="mb-3">
@@ -113,8 +127,8 @@ const Filter: React.FC<PropsDataType> = ({ dataLength, setUserSearch, userSearch
                             <Form.Group className="mb-3">
                                 <div className="d-flex justify-content-end">
                                     <div>
-                                        <button className="default__btn reset" type="reset">Reset</button>
-                                        <button className="default__btn" type="submit">Submit</button>
+                                        <button className="default__btn reset" type="button" onClick={() => handleReset()}>Reset</button>
+                                        <button type="button" className="default__btn" onClick={() => handleSearch()}>Submit</button>
                                     </div>
                                 </div>
                             </Form.Group>

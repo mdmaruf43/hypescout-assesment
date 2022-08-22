@@ -8,10 +8,10 @@ import ThemeDataType from '../dto/ThemeDataType';
 
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
-	const [theme, setTheme] 		= useState<ThemeDataType>({
+	const [updateTheme, setUpdateTheme] 				= useState<string | null>("");
+	const [theme, setTheme] 							= useState<ThemeDataType>({
 		value: "light",
 	});
-	const [updateTheme, setUpdateTheme] = useState<string | null>("");
 
 	const toggleTheme = (value: string) => {
 		setTheme({...theme, value});

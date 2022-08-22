@@ -4,16 +4,34 @@ import Filter from '../Filter/Filter'
 import ProfileList from '../ProfileList/ProfileList'
 import { userData }  from "../../services/API/profileDataAPI";
 import ProfileDataType from '../../dto/ProfileDataType';
+import { profile } from 'console';
 
 const Home: React.FC = () => {
-    const [profileData, setProfileData]     = useState<ProfileDataType[]>([]);
-    const [dataLength, setDataLenght]       = useState<number>(0);
-    const [userSearch, setUserSearch]       = useState<string>("");
+    const [profileData, setProfileData]                         = useState<ProfileDataType[]>([]);
+    const [dataLength, setDataLenght]                           = useState<number>(0);
+    const [userSearch, setUserSearch]                           = useState<string>("");
+    const [influencerIndustry, setInfluencerIndustry] 	        = useState<string>("");
+	const [influencerCountry, setInfluencerCountry] 	        = useState<string>("");
+	const [influencerSocialMedia, setInfluencerSocialMedia] 	= useState<string>("");
 
     useEffect(() => {
         setProfileData(userData?.data?.users);
         setDataLenght(userData?.data?.users?.length);
     }, [])
+
+    const handleReset = () => {
+        setInfluencerIndustry("");
+        setInfluencerCountry("");
+        setInfluencerSocialMedia("");
+    }
+
+    const handleSearch = () => {
+        const newData = userData?.data?.users
+                            .filter(profile => profile.categories === (influencerIndustry === '' ? profile?.categories : influencerIndustry))
+                            .filter(y => y.country === (influencerCountry === '' ? y?.country : influencerCountry))
+                            .filter(z => z?.active_social_media === (influencerSocialMedia === '' ? z?.active_social_media : influencerSocialMedia));
+        setProfileData(newData);
+    }
 
     return (
         <div className="home__section">
@@ -22,6 +40,11 @@ const Home: React.FC = () => {
                     dataLength={dataLength} 
                     setUserSearch={setUserSearch}
                     userSearch={userSearch}
+                    setInfluencerIndustry={setInfluencerIndustry}
+                    setInfluencerCountry={setInfluencerCountry}
+                    setInfluencerSocialMedia={setInfluencerSocialMedia}
+                    handleSearch={handleSearch}
+                    handleReset={handleReset}
                 />
                 <ProfileList 
                     profileData={profileData}
