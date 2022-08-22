@@ -8,19 +8,19 @@ import ThemeToggleContext from '../../context/ThemeToggleContext';
 import ThemeContextType from '../../dto/ThemeContextType';
 
 const Footer: React.FC = () => {
-    const { theme } = React.useContext(ThemeToggleContext) as ThemeContextType;
+    const { updateTheme } = React.useContext(ThemeToggleContext) as ThemeContextType;
 
     return (
-        <div className={`footer__wraper ${theme?.value}`}>
+        <div className={`footer__wraper ${updateTheme}`}>
             <Container>
                 <Row>
                     <Col md={3} xs={12}>
                         <div className="footer__logo--sec text-center text-lg-start">
                             {
-                                theme?.value === "light" ? 
+                                updateTheme === "light" ? 
                                     <img src="/assets/images/logo.png" alt="logo" />
                                     : 
-                                    theme?.value === "dark" ?
+                                    updateTheme === "dark" ?
                                         <img src="/assets/images/logo-light.png" alt="logo" />
                                         :
                                         <img src="/assets/images/logo.png" alt="logo" />

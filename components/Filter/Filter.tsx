@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import React, { useState, Dispatch, SetStateAction } from 'react';
 import { Form, OverlayTrigger, Popover } from 'react-bootstrap';
-import RangeSlider from 'react-bootstrap-range-slider';
+import Slider from 'react-rangeslider';
 import ThemeToggleContext from '../../context/ThemeToggleContext';
 import ThemeContextType from '../../dto/ThemeContextType';
 
@@ -12,14 +12,25 @@ interface PropsDataType {
 }
 
 const Filter: React.FC<PropsDataType> = ({ dataLength, setUserSearch, userSearch }) => {
-    const [checked, setChecked]         = useState(false);
-    const [femaleCheck, setFemaleCheck] = useState(false);
-    const [ value, setValue ]           = useState<number>(0);
-    const { theme }                     = React.useContext(ThemeToggleContext) as ThemeContextType; 
+    const [checked, setChecked]                     = useState(false);
+    const [femaleCheck, setFemaleCheck]             = useState(false);
+    const [sliderValue, setSliderValue ]            = useState<number>(50);
+    const { updateTheme }                    = React.useContext(ThemeToggleContext) as ThemeContextType; 
+
+    const handleChangeHorizontal = (value: number) => {
+        setSliderValue(value);
+    }
     
+    const horizontalLabels = {
+        1: '1K',
+        100: '100K',
+        200: '200K',
+        400:  '400K',
+        500: '500K'
+    }
 
     const filterPopover = (
-        <Popover id="popover-basic" className={`filter__popover ${theme?.value}`}>
+        <Popover id="popover-basic" className={`filter__popover ${updateTheme}`}>
             <Popover.Body>
                 <div className="filter__dropdown">
                     <h6 className="header">Filter Options</h6>
@@ -63,14 +74,16 @@ const Filter: React.FC<PropsDataType> = ({ dataLength, setUserSearch, userSearch
                             </Form.Group>
                             <Form.Group className="mb-3">
                                 <Form.Label>Influencer’s Social Media Platform</Form.Label>
-                                <RangeSlider
-                                    value={value}
-                                    onChange={changeEvent => setValue(changeEvent.target.value)}
-                                    tooltipPlacement="top"
-                                    min={1}
-                                    max={500}
-                                    step={50}
-                                />
+                                <div className='slider custom-labels'>
+                                    <Slider
+                                        min={1}
+                                        max={500}
+                                        value={sliderValue}
+                                        labels={horizontalLabels}
+                                        format={(value) => value + "K"}
+                                        onChange={handleChangeHorizontal}
+                                    />
+                                </div>
                             </Form.Group>
                             <Form.Group className="mb-3">
                                 <Form.Label>Influencer’s Gender</Form.Label>
@@ -113,7 +126,7 @@ const Filter: React.FC<PropsDataType> = ({ dataLength, setUserSearch, userSearch
     );
 
     return (
-        <div className={`filter__grid ${theme?.value}`}>
+        <div className={`filter__grid ${updateTheme}`}>
             <div className="d-flex align-items-lg-center left">
                 <h6>Profile ({dataLength})</h6>
             </div>

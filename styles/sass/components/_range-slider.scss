@@ -1,0 +1,28 @@
+.slider {
+    margin-bottom: 35px;
+}
+.rangeslider {
+    margin: 10px 0 15px 0 !important;
+    height: 6px !important;
+    border-radius: 100px !important;
+    box-shadow: none !important;
+    .rangeslider__fill {
+        background-color: #564FB1 !important;
+    }
+    .rangeslider__handle {
+        width: 24px !important;
+        height: 24px !important;
+        background-color: #564FB1 !important;
+        border: none !important;
+        &::after {
+            background-color: #564FB1 !important;
+            box-shadow: none !important;
+        }
+    }
+    .rangeslider__labels {
+        li {
+            font-size: 10px !important;
+            color:  #565D69 !important;
+        }
+    }
+}

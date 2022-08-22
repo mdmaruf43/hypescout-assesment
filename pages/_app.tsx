@@ -1,7 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import type { AppProps } from 'next/app';
 import "../styles/sass/style.scss";
-import 'react-bootstrap-range-slider/dist/react-bootstrap-range-slider.css';
+import 'react-rangeslider/lib/index.css';
 import { useEffect, useState } from 'react';
 import ThemeToggleContext from '../context/ThemeToggleContext';
 import ThemeDataType from '../dto/ThemeDataType';
@@ -11,37 +11,32 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
 	const [theme, setTheme] 		= useState<ThemeDataType>({
 		value: "light",
 	});
-	const [updateTheme, setUpdateTheme] = useState("");
+	const [updateTheme, setUpdateTheme] = useState<string | null>("");
 
 	const toggleTheme = (value: string) => {
 		setTheme({...theme, value});
-		setThemeInStorage(value);
-	}
-
-	const setThemeInStorage = (value: string) => {
-		localStorage.setItem('theme', value)
-	}
-
-	const getThemeInStorage = () => {
-		localStorage.getItem('theme') // returns 'light' in this case
+		localStorage.setItem('themeState', value);
 	}
 
 	useEffect(() => {
-		theme?.value === "light" ? 
+		let theme = localStorage.getItem('themeState');
+		setUpdateTheme(theme);
+	}, [theme?.value])
+
+	useEffect(() => {
+		updateTheme === "light" ? 
 			document.body.style.background = "#fff"
 			:
-			theme?.value === "dark" ?
+			updateTheme === "dark" ?
 				document.body.style.background = "#000"
 				: 
 				document.body.style.background = "#fff"
-	}, [theme])
+	}, [updateTheme])
 	
 
   	return (
-		<ThemeToggleContext.Provider value={{ theme, toggleTheme }}>
-			<div className={theme?.value}>
-				<Component {...pageProps} />
-			</div>
+		<ThemeToggleContext.Provider value={{ theme, toggleTheme, updateTheme }}>
+			<Component {...pageProps} />
 		</ThemeToggleContext.Provider>
 	)
 }

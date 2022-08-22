@@ -12,7 +12,7 @@ interface PropsDataType {
 
 const ProfileList: React.FC<PropsDataType> = ({ profileData, userSearch }) => {
     const [currentItems, setCurrentItems]   = useState<ProfileDataType[]>([]);
-    const { theme }                         = React.useContext(ThemeToggleContext) as ThemeContextType;
+    const { updateTheme }            = React.useContext(ThemeToggleContext) as ThemeContextType;
     const [pageCount, setPageCount]         = useState(0);
     const [itemOffset, setItemOffset]       = useState(0);
     const itemsPerPage                      = 6;
@@ -34,7 +34,7 @@ const ProfileList: React.FC<PropsDataType> = ({ profileData, userSearch }) => {
 
     return (
         <div>
-            <div className={`profile__grid ${theme?.value}`}>
+            <div className={`profile__grid ${updateTheme}`}>
             {
                 currentItems?.length > 0 ? 
                     currentItems?.map((user, index) => (
@@ -82,7 +82,7 @@ const ProfileList: React.FC<PropsDataType> = ({ profileData, userSearch }) => {
                     pageRangeDisplayed={5}
                     pageCount={pageCount}
                     previousLabel="🡠 Previous"
-                    containerClassName={`pagination ${theme?.value}`}
+                    containerClassName={`pagination ${updateTheme}`}
                     pageClassName="page__count"
                     activeLinkClassName="active"
                 />
