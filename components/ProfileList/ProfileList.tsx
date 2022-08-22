@@ -4,6 +4,7 @@ import ProfileDataType from '../../dto/ProfileDataType';
 import ReactPaginate from 'react-paginate';
 import ThemeContextType from '../../dto/ThemeContextType';
 import ThemeToggleContext from '../../context/ThemeToggleContext';
+import Image from 'next/image';
 
 interface PropsDataType {
     profileData:    ProfileDataType[];
@@ -41,7 +42,13 @@ const ProfileList: React.FC<PropsDataType> = ({ profileData, userSearch }) => {
                         user?.name?.toLocaleLowerCase().includes(userSearch.toLowerCase()) && (
                             <div key={index} className="each">
                                 <div className="img__wraper">
-                                    <img src={user?.photo} alt={user?.name} />
+                                    <Image
+                                        src={user?.photo}
+                                        alt="Picture of the author"
+                                        width={140}
+                                        height={140}
+                                        style={{borderRadius: "50%"}}
+                                    />
                                 </div>
                                 <div className="content">
                                     <h6>{user?.name}</h6>

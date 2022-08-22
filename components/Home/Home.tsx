@@ -4,7 +4,6 @@ import Filter from '../Filter/Filter'
 import ProfileList from '../ProfileList/ProfileList'
 import { userData }  from "../../services/API/profileDataAPI";
 import ProfileDataType from '../../dto/ProfileDataType';
-import { profile } from 'console';
 
 const Home: React.FC = () => {
     const [profileData, setProfileData]                         = useState<ProfileDataType[]>([]);
@@ -23,6 +22,8 @@ const Home: React.FC = () => {
         setInfluencerIndustry("");
         setInfluencerCountry("");
         setInfluencerSocialMedia("");
+        setProfileData(userData?.data?.users);
+        setDataLenght(userData?.data?.users?.length);
     }
 
     const handleSearch = () => {
@@ -31,6 +32,7 @@ const Home: React.FC = () => {
                             .filter(y => y.country === (influencerCountry === '' ? y?.country : influencerCountry))
                             .filter(z => z?.active_social_media === (influencerSocialMedia === '' ? z?.active_social_media : influencerSocialMedia));
         setProfileData(newData);
+        setDataLenght(newData?.length);
     }
 
     return (
