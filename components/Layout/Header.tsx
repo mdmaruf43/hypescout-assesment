@@ -17,22 +17,22 @@ const Header: React.FC = () => {
     const { theme, toggleTheme }        = React.useContext(ThemeToggleContext) as ThemeContextType;
 
     const themeTogglePopover = (
-        <Popover id="popover-basic">
+        <Popover id="popover-basic" className={theme?.value}>
             <Popover.Body>
                 <ul className="theme__toggle--dropdown">
-                    <li>
+                    <li className={theme?.value === "light" ? "active" : ""}>
                         <div className="d-flex" onClick={() => toggleTheme("light")}>
                             <p><img src="/assets/images/icon/light2.svg" alt="icon" /></p>
                             <p className="text">Light</p>
                         </div>
                     </li>
-                    <li>
+                    <li className={theme?.value === "dark" ? "active" : ""}>
                         <div className="d-flex" onClick={() => {toggleTheme("dark")}}>
-                            <p><img src="/assets/images/icon/dark.svg" alt="icon" /></p>
+                            <p><img src="/assets/images/icon/dark2.svg" alt="icon" /></p>
                             <p className="text">Dark</p>
                         </div>
                     </li>
-                    <li>
+                    <li className={theme?.value === "system" ? "active" : ""}>
                         <div className="d-flex" onClick={() => toggleTheme("system")}>
                             <p><img src="/assets/images/icon/system.svg" alt="icon" /></p>
                             <p className="text">System</p>
@@ -62,10 +62,10 @@ const Header: React.FC = () => {
                 <div className="mobile__menu--icon d-lg-none">
                     <ul className="d-flex align-items-center">
                         <li>
-                            <img src="/assets/images/icon/notification.svg" alt="icon" />
+                            <img className="nofication" src="/assets/images/icon/notification.svg" alt="icon" />
                         </li>
                         <li>
-                            <OverlayTrigger trigger="click" rootClose placement="bottom" overlay={themeTogglePopover}>
+                            <OverlayTrigger trigger="click" rootCloseEvent="click" rootClose placement="bottom" overlay={themeTogglePopover}>
                                 <Button>
                                     {
                                         theme?.value === "light" ? 
@@ -83,10 +83,10 @@ const Header: React.FC = () => {
                             <img src="/assets/images/profile/headerProfile.png" alt="profileImage" />
                         </li>
                         <li style={{ cursor: "pointer" }} onClick={handleShow}>
-                            <img src="/assets/images/icon/navigation.svg" alt="icon" />
+                            <img className="navigation" src="/assets/images/icon/navigation.svg" alt="icon" />
                         </li>
                     </ul>
-                    <Offcanvas show={show} onHide={handleClose}>
+                    <Offcanvas show={show} onHide={handleClose} className={theme?.value}>
                         <Offcanvas.Header closeButton>
                             <Offcanvas.Title></Offcanvas.Title>
                         </Offcanvas.Header>
@@ -135,6 +135,7 @@ const Header: React.FC = () => {
                                 trigger="click" 
                                 rootClose 
                                 placement="bottom" 
+                                rootCloseEvent="click"
                                 overlay={themeTogglePopover}
                             >
                                 <Button>

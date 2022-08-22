@@ -12,7 +12,7 @@
 		.profile__text {
 			color: $dark-text-color !important;
 		}
-		img.nofication {
+		img.nofication, img.navigation {
 			filter: invert(49%) sepia(18%) saturate(401%) hue-rotate(166deg) brightness(85%) contrast(89%);
 		}
 	}
@@ -90,48 +90,82 @@
 		}
 	}
 }
-.mobile__menu {
-	ul {
-		li {
-			margin-bottom: 10px;
-			font-weight: 400;
-			font-size: 14px;
-			line-height: 17px;
-			color: #202124;
-			&.active {
-				border-radius: 4px;
-				font-weight: 600 !important;
-				color: #202124 !important;
-				transition: 0.4s all;
-				&:hover {
-					opacity: 0.8;
+.offcanvas {
+	&.dark {
+		background-color: $light-dark-bg;
+		.btn-close {
+			color: #fff;
+			background: transparent url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23fff'%3e%3cpath d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z'/%3e%3c/svg%3e") center/1em auto no-repeat;
+		}
+		.mobile__menu {
+			ul {
+				li {
+					color: $dark-text-color;
+					&.active {
+						color: $white !important;
+					}
 				}
 			}
 		}
 	}
-} 
-.popover-body {
-	width: 150px;
-	.theme__toggle--dropdown {
-		li {
-			margin-bottom: 8px;
-			div {
-				cursor: pointer;
-				p:first-child {
-					padding-right: 8px;
+	.mobile__menu {
+		ul {
+			li {
+				margin-bottom: 10px;
+				font-weight: 400;
+				font-size: 14px;
+				line-height: 17px;
+				color: $light-text-color;
+				&.active {
+					border-radius: 4px;
+					font-weight: 600 !important;
+					color: #202124 !important;
+					transition: 0.4s all;
+					&:hover {
+						opacity: 0.8;
+					}
 				}
-				.text {
-					font-weight: 400;
-					font-size: 14px;
-					line-height: 17px;
-					color: #637381;
-					display: flex;
-					align-items: center;
+			}
+		}
+	} 
+}
+.popover {
+	&.dark {
+		background-color: $light-dark-bg;
+	}
+	.popover-body {
+		width: 150px;
+		.theme__toggle--dropdown {
+			li {
+				margin-bottom: 8px;
+				&.active {
+					img {
+						filter: invert(30%) sepia(31%) saturate(5466%) hue-rotate(202deg) brightness(85%) contrast(90%);
+					}
+					.text {
+						color: #8C87D1;
+						font-weight: 700;
+					}
 				}
-				&:hover {
-					opacity: 0.8;
+				div {
+					cursor: pointer;
+					p:first-child {
+						padding-right: 8px;
+					}
+					.text {
+						font-weight: 400;
+						font-size: 14px;
+						line-height: 17px;
+						color: #637381;
+						display: flex;
+						align-items: center;
+					}
+					&:hover {
+						opacity: 0.8;
+					}
 				}
 			}
 		}
 	}
 }
+

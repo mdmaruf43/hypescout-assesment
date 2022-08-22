@@ -1,5 +1,8 @@
 .home__section {
     margin-top: 100px;
+    @include media-break-width(320, 767) {
+        margin-top: 80px;
+    }
     .filter__grid {
         display: grid;
         gap: 30px;
@@ -7,6 +10,25 @@
         background: #F7F7F8;
         border-radius: 8px;
         padding: 15px;
+        &.dark {
+            background-color: $light-dark-bg;
+            input {
+                background: #202124 !important;
+                border: 1px solid #323246 !important;
+                color: $dark-text-color;
+                &::placeholder {
+                    color: $dark-text-color !important;
+                }
+            }
+            .search__icon {
+                filter: invert(43%) sepia(10%) saturate(786%) hue-rotate(166deg) brightness(98%) contrast(84%);
+            }
+            .left {
+                h6 {
+                    color: $white;
+                }
+            }
+        }
         @include media-break-width(320, 767) {
             grid-template-columns: 1fr;
             gap: 15px;
@@ -50,6 +72,44 @@
         @include media-break-width(320, 767) {
             grid-template-columns: 1fr;
             gap: 15px;
+            margin-top: 15px;
+        }
+        &.dark {
+            .each {
+                background: $light-dark-bg;
+                transition: 0.5s all;
+                &:hover {
+                    border: 1px solid #637381;
+                }
+                .content {
+                    h6 {
+                        color: $white
+                    }
+                    p {
+                        img {
+                            filter: invert(43%) sepia(10%) saturate(786%) hue-rotate(166deg) brightness(98%) contrast(84%);
+                        }
+                        color: $dark-text-color;
+                    }
+                }
+                .social__list {
+                    li {
+                        img {
+                            filter: invert(50%) sepia(10%) saturate(786%) hue-rotate(166deg) brightness(98%) contrast(84%);
+                        }
+                    }
+                }
+                .bottom {
+                    .each__sec {
+                        p {
+                            color: $dark-text-color;
+                            span {
+                                color: $dark-text-color;
+                            }
+                        }
+                    }
+                }
+            }
         }
         .each {
             background: #F7F7F8;
@@ -64,7 +124,7 @@
                     font-weight: 700;
                     font-size: 24px;
                     line-height: 29px;
-                    color: #231F20;
+                    color: $light-text-color;
                     padding-bottom: 10px;
                 }
                 p {
@@ -74,7 +134,7 @@
                     font-weight: 400;
                     font-size: 16px;
                     line-height: 35px;
-                    color: #000000;
+                    color: $light-text-color;
                 }
             }
             .social__list {
@@ -110,6 +170,26 @@
     background-color: $slight-light-bg;
     box-shadow: 0px 8px 80px -4px rgba(42, 44, 52, 0.25);
     border-radius: 8px;
+    &.dark {
+        background-color: $light-dark-bg;
+        .popover-arrow {
+            background-color: $light-dark-bg;
+        }
+        .filter__dropdown {
+            .header {
+                color: $white !important;
+            }
+            .filter__form {
+                label {
+                    color: $white !important;
+                }
+                select {
+                    background-color: #050405;
+                    border: none;
+                }
+            }
+        }
+    }
     .popover-body {
         width: 270px;
         padding: 0;

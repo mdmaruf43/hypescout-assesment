@@ -113,7 +113,7 @@ const Filter: React.FC<PropsDataType> = ({ dataLength, setUserSearch, userSearch
     );
 
     return (
-        <div className="filter__grid">
+        <div className={`filter__grid ${theme?.value}`}>
             <div className="d-flex align-items-lg-center left">
                 <h6>Profile ({dataLength})</h6>
             </div>

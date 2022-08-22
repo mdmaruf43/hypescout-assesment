@@ -2,6 +2,8 @@
 import React, { useState, useEffect } from 'react';
 import ProfileDataType from '../../dto/ProfileDataType';
 import ReactPaginate from 'react-paginate';
+import ThemeContextType from '../../dto/ThemeContextType';
+import ThemeToggleContext from '../../context/ThemeToggleContext';
 
 interface PropsDataType {
     profileData:    ProfileDataType[];
@@ -9,10 +11,11 @@ interface PropsDataType {
 }
 
 const ProfileList: React.FC<PropsDataType> = ({ profileData, userSearch }) => {
-    const [currentItems, setCurrentItems] = useState<ProfileDataType[]>([]);
-    const [pageCount, setPageCount] = useState(0);
-    const [itemOffset, setItemOffset] = useState(0);
-    const itemsPerPage = 6;
+    const [currentItems, setCurrentItems]   = useState<ProfileDataType[]>([]);
+    const { theme }                         = React.useContext(ThemeToggleContext) as ThemeContextType;
+    const [pageCount, setPageCount]         = useState(0);
+    const [itemOffset, setItemOffset]       = useState(0);
+    const itemsPerPage                      = 6;
   
     useEffect(() => {
         const endOffset = itemOffset + itemsPerPage;
@@ -31,7 +34,7 @@ const ProfileList: React.FC<PropsDataType> = ({ profileData, userSearch }) => {
 
     return (
         <div>
-            <div className="profile__grid">
+            <div className={`profile__grid ${theme?.value}`}>
             {
                 currentItems?.length > 0 ? 
                     currentItems?.map((user, index) => (
@@ -79,7 +82,7 @@ const ProfileList: React.FC<PropsDataType> = ({ profileData, userSearch }) => {
                     pageRangeDisplayed={5}
                     pageCount={pageCount}
                     previousLabel="🡠 Previous"
-                    containerClassName="pagination"
+                    containerClassName={`pagination ${theme?.value}`}
                     pageClassName="page__count"
                     activeLinkClassName="active"
                 />
