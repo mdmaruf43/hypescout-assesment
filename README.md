@@ -17,7 +17,8 @@ This project simply Hypescout one page application with some feature.
 > https://hypescout-assesment.vercel.app/
 
 # Key Feature 
-- Theme Toggle persisting through refresh using localStorage 
+- Theme Toggle persisting through refresh using localStorage
+- Advanced Search Filter  
 - Paginate all user data
 - Search user
 - Responsive all UI  
