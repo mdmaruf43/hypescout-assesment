@@ -7,13 +7,20 @@ This project simply Hypescout one page application with some feature.
 - Next.js
 - Typescript
 - Hook 
-- React Pagination
 - Context API
+- React Pagination
+- React Range Slider 
 - React Bootstrap
 - Sass
   
 # Live Demo
-> 
+> https://hypescout-assesment.vercel.app/
+
+# Key Feature 
+- Theme Toggle persisting through refresh using localStorage 
+- Paginate all user data
+- Search user
+- Responsive all UI  
 
 ## Getting Started
 
